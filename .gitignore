@@ -1,0 +1,79 @@
+# ============================================================
+#  Unity 项目 .gitignore  (基于 Unity 官方模板)
+#  只跟踪 Assets / ProjectSettings / Packages 三个文件夹
+# ============================================================
+
+# ---------- Unity 自动生成的文件夹 ----------
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Asset Store 下载的包缓存（体积大，可由 Packages 还原）
+/[Aa]ssets/AssetStoreTools*
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# ---------- Unity 自动生成的文件 ----------
+sysinfo.txt
+*.stackdump
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.vsconfig
+.vs/
+.idea/
+.gradle/
+.consulo/
+
+# 崩溃报告
+crashlytics-build.properties
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# ---------- IDE / 编辑器生成的工程文件 ----------
+# 这些文件由 Unity 或 IDE 自动重新生成，不需要版本控制
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.userprofile
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+*.DotSettings.user
+*.ncrunchproject
+*.ncrunchsolution
+*.[Cc]ache
+!*.[Cc]ache/
+
+# ---------- 操作系统产生的文件 ----------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+*~
+
+# ---------- 构建产物 ----------
+*.apk
+*.aab
+*.ipa
+*.unitypackage
+*.unitypackage.meta
+*.app
+ExportedObj/
