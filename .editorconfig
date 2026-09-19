@@ -1,0 +1,62 @@
+# ============================================================
+#  EditorConfig —— 统一本项目所有编辑器的代码风格与文件编码
+#  这个文件会随项目一起提交，克隆到任何机器都生效
+#  Visual Studio / VS Code / Rider 都读取它
+# ============================================================
+
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# ------------------------------------------------------------
+# C# 脚本
+# ------------------------------------------------------------
+[*.cs]
+
+# ★ 核心设置：强制以 UTF-8 with BOM 保存
+#
+# 为什么必须带 BOM：
+#   中文 Windows 系统代码页是 GBK(936)，Unity 和 Visual Studio 在读取
+#   「无 BOM」的文件时都需要猜编码，常常猜成 GBK，导致中文注释在
+#   Unity Inspector / Console 或 GitHub 上显示为乱码。
+#   BOM(EF BB BF) 是一个明确的「我是 UTF-8」声明，有了它谁都不用猜。
+#
+# 取值说明（EditorConfig 规范定义的值）：
+#   latin1 | utf-8 | utf-16be | utf-16le | utf-8-bom
+charset = utf-8-bom
+
+# Unity 官方代码风格使用制表符缩进
+indent_style = tab
+indent_size = 4
+
+# C# 专用：大括号换行、控制流关键字后加空格等
+csharp_new_line_before_open_brace = all
+csharp_prefer_braces = true:suggestion
+dotnet_sort_system_directives_first = true
+
+# ------------------------------------------------------------
+# JSON（Unity 的 manifest.json、ProjectSettings 下的 *.json）
+# ------------------------------------------------------------
+[*.json]
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+# ------------------------------------------------------------
+# Unity 的 YAML 序列化资源
+# 注意：这些文件由 Unity 自动生成和维护，请勿手动改动格式
+# ------------------------------------------------------------
+[*.{asset,meta,unity,prefab,mat,anim,controller}]
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+# ------------------------------------------------------------
+# Unity 自动生成的工程文件（已被 .gitignore 排除，此处仅为消除编辑器告警）
+# ------------------------------------------------------------
+[*.{csproj,sln}]
+indent_style = space
+indent_size = 2
