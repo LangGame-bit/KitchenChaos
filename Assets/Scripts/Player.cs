@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKitchenObjectParent
 {
 	public static Player Instance {  get; private set; }
 
@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
 	// 当选中的工作台改变时 要做的事情
 	public UnityAction<OnSelectedCounterChangedArgs> OnSelectedCounterChanged;
 
+	private KitchenObject kitchenObject;
+	[SerializeField] private Transform kitchenObjectHoldPoint;
+
 	private void Awake()
 	{
 		if (Instance != null)
@@ -56,7 +59,7 @@ public class Player : MonoBehaviour
 	{
 		if (selectedCounter != null)
 		{
-			selectedCounter.Interact();
+			selectedCounter.Interact(this);
 		}
 	}
 
@@ -148,5 +151,30 @@ public class Player : MonoBehaviour
 		this.selectedCounter = selectedCounter;
 		// 调用选中工作台改变时的事件
 		OnSelectedCounterChanged?.Invoke(new OnSelectedCounterChangedArgs(selectedCounter));
+	}
+
+	public Transform GetKitchenObjectFollowTransform()
+	{
+		return kitchenObjectHoldPoint;
+	}
+
+	public void SetKitchenObject(KitchenObject kitchenObject)
+	{
+		this.kitchenObject = kitchenObject;
+	}
+
+	public KitchenObject GetKitchenObject()
+	{
+		return kitchenObject;
+	}
+
+	public void ClearKitchenObject()
+	{
+		kitchenObject = null;
+	}
+
+	public bool HasKitchenObject()
+	{
+		return kitchenObject != null;
 	}
 }
