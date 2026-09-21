@@ -7,11 +7,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
 	public class OnSelectedCounterChangedArgs
 	{
-		public ClearCounter clearCounter;
+		public BaseCounter baseCounter;
 
-		public OnSelectedCounterChangedArgs(ClearCounter clearCounter)
+		public OnSelectedCounterChangedArgs(BaseCounter baseCounter)
 		{
-			this.clearCounter = clearCounter;
+			this.baseCounter = baseCounter;
 		}
 	}
 
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 	public bool IsWalking() => isWalking;
 
 	// 面前的工作台
-	private ClearCounter selectedCounter;
+	private BaseCounter selectedCounter;
 
 	// 当选中的工作台改变时 要做的事情
 	public UnityAction<OnSelectedCounterChangedArgs> OnSelectedCounterChanged;
@@ -125,11 +125,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit raycastHit, interactDistance))
 		{
 			// 面前有物体 而且是工作台
-			if (raycastHit.transform.TryGetComponent<ClearCounter>(out ClearCounter clearCounter))
+			if (raycastHit.transform.TryGetComponent<BaseCounter>(out BaseCounter baseCounter))
 			{
-				if (clearCounter != selectedCounter)
+				if (baseCounter != selectedCounter)
 				{
-					SetSelectedCounter(clearCounter);
+					SetSelectedCounter(baseCounter);
 				}
 			}
 			else //面前物体没有ClearCounter脚本 说明不是工作台
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 	/// <summary>
 	/// 设置选中的工作台
 	/// </summary>
-	private void SetSelectedCounter(ClearCounter selectedCounter)
+	private void SetSelectedCounter(BaseCounter selectedCounter)
 	{
 		this.selectedCounter = selectedCounter;
 		// 调用选中工作台改变时的事件

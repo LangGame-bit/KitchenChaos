@@ -5,8 +5,8 @@ using static Player;
 
 public class SelectedCounterVisual : MonoBehaviour
 {
-	[SerializeField] private ClearCounter clearCounter;
-	[SerializeField] private GameObject visualGameObject;
+	[SerializeField] private BaseCounter baseCounter;
+	[SerializeField] private GameObject[] visualGameObjectArray;
 
 	private void Start()
 	{
@@ -18,7 +18,7 @@ public class SelectedCounterVisual : MonoBehaviour
 	private void Player_OnSelectedCounterChanged(OnSelectedCounterChangedArgs args)
 	{
 		// 如果选中的工作台是自己 就显示选中的视觉效果
-		if (args.clearCounter == clearCounter)
+		if (args.baseCounter == baseCounter)
 		{
 			Show();
 		}
@@ -31,11 +31,17 @@ public class SelectedCounterVisual : MonoBehaviour
 
 	private void Show()
 	{
-		visualGameObject.SetActive(true);
+		foreach (GameObject visualGameObject in visualGameObjectArray)
+		{
+			visualGameObject.SetActive(true);
+		}
 	}
 
 	private void Hide()
 	{
-		visualGameObject.SetActive(false);
+		foreach (GameObject visualGameObject in visualGameObjectArray)
+		{
+			visualGameObject.SetActive(false);
+		}
 	}
 }
