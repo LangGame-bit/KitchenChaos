@@ -47,12 +47,21 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 	{
 		// 添加按下交互键的事件调用
 		GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+		GameInput.Instance.OnCut += GameInput_Cut;
 	}
 
 	private void Update()
 	{
 		HandleMovement();
 		HandleInteraction();
+	}
+
+	private void GameInput_Cut()
+	{
+		if (selectedCounter != null)
+		{
+			selectedCounter.Cut(this);
+		}
 	}
 
 	private void GameInput_OnInteractAction()

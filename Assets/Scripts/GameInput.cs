@@ -10,6 +10,7 @@ public class GameInput : MonoBehaviour
 	private PlayerInputActions playerInputActions;
 
 	public UnityAction OnInteractAction;
+	public UnityAction OnCut;
 
 	private void Awake()
 	{
@@ -17,6 +18,12 @@ public class GameInput : MonoBehaviour
 		playerInputActions = new PlayerInputActions();
 		playerInputActions.Player.Enable();
 		playerInputActions.Player.Interact.performed += Interact_performed;
+		playerInputActions.Player.Cut.performed += Cut_performed;
+	}
+
+	private void Cut_performed(InputAction.CallbackContext obj)
+	{
+		OnCut?.Invoke();
 	}
 
 	private void Interact_performed(InputAction.CallbackContext obj)

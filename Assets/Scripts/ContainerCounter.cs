@@ -10,11 +10,10 @@ public class ContainerCounter : BaseCounter
 	
 	public override void Interact(Player player)
 	{
-		// 实例化物品并给玩家
-		if (!HasKitchenObject())
+		// 如果玩家没有携带物品
+		if (!player.HasKitchenObject())
 		{
-			Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
-			kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(player);
+			KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
 
 			OnPlayerGrabbedObject?.Invoke();
 		}
